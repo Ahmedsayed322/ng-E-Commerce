@@ -45,7 +45,7 @@ app.use((req, res, next) => {
     .then((response) => (response ? writeResponseToNodeResponse(response, res) : next()))
     .catch(next);
 });
-app.get('/data', async (req, res) => {
+app.get('api/data', async (req, res) => {
   const data = await readFile('./src/app/dummy/products-dummy.json', { encoding: 'utf-8' });
   res.json(JSON.parse(data));
 });
