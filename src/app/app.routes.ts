@@ -41,9 +41,9 @@ export const routes: Routes = [
       ),
   },
 
-  {
-    path: '**',
-    loadComponent: () =>
-      import('./pages/not-found/not-found').then((component) => component.NotFound),
-  },
+  // {
+  //   path: '**',
+  //   loadComponent: () =>
+  //     import('./pages/not-found/not-found').then((component) => component.NotFound),
+  // },
 ];

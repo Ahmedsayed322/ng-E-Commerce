@@ -5,8 +5,9 @@ import {
   writeResponseToNodeResponse,
 } from '@angular/ssr/node';
 import express from 'express';
-import { join } from 'node:path';
-
+import { readFile } from 'node:fs/promises';
+import { join, resolve } from 'node:path';
+// لو Node < 18
 const browserDistFolder = join(import.meta.dirname, '../browser');
 
 const app = express();
@@ -44,7 +45,10 @@ app.use((req, res, next) => {
     .then((response) => (response ? writeResponseToNodeResponse(response, res) : next()))
     .catch(next);
 });
-
+app.get('/data', async (req, res) => {
+  const data = await readFile('./src/app/dummy/products-dummy.json', { encoding: 'utf-8' });
+  res.json(JSON.parse(data));
+});
 /**
  * Start the server if this module is the main entry point, or it is ran via PM2.
  * The server listens on the port defined by the `PORT` environment variable, or defaults to 4000.
