@@ -38,7 +38,7 @@ export class RatingSummary {
         percentage: (count / total) * 100,
       };
     });
-    console.log(result);
+
     return result
   });
 }

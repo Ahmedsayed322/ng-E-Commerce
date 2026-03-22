@@ -27,9 +27,7 @@ import { SeoService } from '../../services/seo-service';
 export class CheckOut {
   cartStore = inject(CartStore);
   seo = inject(SeoService);
-  getShippingData(data: any) {
-    console.log(data);
-  }
+
   constructor() {
     this.seo.updateSeoTags({
       title: 'checkout | My Store',

@@ -36,7 +36,7 @@ export const ReviewStore = signalStore(
       const reviews = store.reviews().filter((r) => {
         return r.productId == product?.id;
       });
-      console.log(reviews);
+    
 
       patchState(store, { selectedProductReviews: [...reviews], loading: false });
     }),
