@@ -41,7 +41,7 @@ export const productStore = signalStore(
     const platformId = inject(PLATFORM_ID);
     return {
       products: httpResource<Product[]>(
-        () => (isPlatformBrowser(platformId) ? 'http://localhost:4000/data' : undefined),
+        () => (isPlatformBrowser(platformId) ? 'https://fakestoreapi.com/products' : undefined),
         {
           defaultValue: [],
         },
