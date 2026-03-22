@@ -3,8 +3,8 @@ import { MatListItem, MatListItemTitle, MatNavList } from '@angular/material/lis
 import { MatSidenav, MatSidenavContainer, MatSidenavContent } from '@angular/material/sidenav';
 import { RouterLink } from '@angular/router';
 import { productStore } from '../../store/product';
-import { TitleCasePipe, NgClass } from '@angular/common';
-import { ApiService } from '../../services/api-service';
+import { TitleCasePipe } from '@angular/common';
+
 
 @Component({
   selector: 'app-app-container',

@@ -74,6 +74,5 @@ export class WriteReview {
       userImageUrl: this.userStore.user()?.imageUrl,
       userName: this.userStore.user()?.name!,
     } as UserReview);
-    this.form.reset();
   }
 }
