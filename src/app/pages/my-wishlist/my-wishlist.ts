@@ -6,6 +6,7 @@ import { MatAnchor } from '@angular/material/button';
 import { EmptyWishlist } from '../../shared/empty-wishlist/empty-wishlist';
 import { WishlistStore } from '../../store/wishlist';
 import { SeoService } from '../../services/seo-service';
+import { productStore } from '../../store/product';
 
 @Component({
   selector: 'app-my-wishlist',
@@ -16,7 +17,7 @@ import { SeoService } from '../../services/seo-service';
 export class MyWishlist {
   store = inject(WishlistStore);
   seo = inject(SeoService);
-
+  productStore = inject(productStore);
   constructor() {
     this.seo.updateSeoTags({
       title: 'wishlist | My Store',

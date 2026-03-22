@@ -9,6 +9,7 @@ import { PaymentCalculations } from './payment-calculations/payment-calculations
 import { CartStore } from '../../store/cart';
 import { WishlistStore } from '../../store/wishlist';
 import { SeoService } from '../../services/seo-service';
+import { productStore } from '../../store/product';
 
 @Component({
   selector: 'app-cart',
@@ -19,6 +20,7 @@ import { SeoService } from '../../services/seo-service';
 export class Cart {
   cartStore = inject(CartStore);
   wishlistStore = inject(WishlistStore);
+  productStore = inject(productStore);
   seo = inject(SeoService);
 
   constructor() {

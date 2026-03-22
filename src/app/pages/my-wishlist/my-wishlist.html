@@ -1,5 +1,5 @@
 <div class="mx-auto max-w-300 w-full flex flex-col gap-6">
-  <app-back-button navigateTo="/products"><p>Continue Shopping</p></app-back-button>
+  <app-back-button [navigateTo]="`/products/${productStore.category()}`"></app-back-button>
   @if (store.whishListCounter() > 0) {
     <div class="flex items-center justify-between px-2">
       <p class="text-3xl font-bold">My Wishlist</p>
