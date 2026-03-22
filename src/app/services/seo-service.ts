@@ -1,7 +1,8 @@
 import { inject, Injectable } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { SeoData } from '../models/seo';
-import { Router } from 'express';
+import { Router } from '@angular/router';
+
 
 @Injectable({
   providedIn: 'root',
