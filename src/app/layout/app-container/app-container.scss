@@ -2,3 +2,9 @@
   background: #1976d2 !important;
   border-radius: 6px !important;
 }
+
+
+::view-transition-old(sidenav),
+::view-transition-new(sidenav) {
+  animation: none;
+}
