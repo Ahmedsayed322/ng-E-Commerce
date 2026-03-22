@@ -1,0 +1,46 @@
+<div class="mx-auto max-w-300  flex flex-col gap-6 h-full">
+  <app-back-button navigateTo="/products">
+    <p>Continue Shopping</p>
+  </app-back-button>
+
+  <p class="text-3xl font-bold">Shopping Cart</p>
+
+  <div appPanel class="w-full flex flex-col sm:items-center gap-4 sm:flex-row justify-between">
+    <div class="flex items-center gap-4">
+      <mat-icon class="text-red-600!">favorite_outline</mat-icon>
+      <div>
+        <h3 class="text-xl font-bold text-gray-900">
+          Wishlist ({{ wishlistStore.whishListCounter() }} items)
+        </h3>
+        <p class="text-sm text-gray-600">
+          you have {{ wishlistStore.whishListCounter() }} items saved for later
+        </p>
+      </div>
+    </div>
+    <div class="flex flex-col md:flex-row gap-2">
+      <button matButton routerLink="/wishlist" matLink>View All</button>
+      <button matButton="filled" matLink (click)="cartStore.addToCartFromWhishList()">
+        <mat-icon>shopping_cart</mat-icon>
+        Add All to Cart
+      </button>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-6 gap-4">
+    <div appPanel class="col-span-6 lg:col-span-4 max-h-fit bg-white shadow-sm rounded-md">
+      <h2 class="text-2xl font-bold mb-2">Cart Items({{ cartStore.cartItemsCounter() }})</h2>
+      <div class="flex flex-col justify-between gap-6">
+        @for (item of cartStore.cartItems(); track item.product.id) {
+          <app-cart-list [product]="item.product" [quantity]="item.quantity" />
+        }
+      </div>
+    </div>
+    <app-payment-calculations class="col-span-6 lg:col-span-2">
+      <ng-container action>
+        <button matButton="filled" (click)="cartStore.proceedToCheckout()">
+          Proceed to Checkout
+        </button>
+      </ng-container>
+    </app-payment-calculations>
+  </div>
+</div>

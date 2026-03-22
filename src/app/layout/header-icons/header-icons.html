@@ -1,0 +1,93 @@
+<button
+  class="hidden! md:inline!"
+  matIconButton
+  [routerLink]="['/wishlist']"
+  [matBadge]="wishlistStore.whishListCounter()"
+  [matBadgeHidden]="wishlistStore.whishListCounter() === 0"
+>
+  <mat-icon>favorite</mat-icon>
+</button>
+
+<button
+  class="hidden! md:inline!"
+  [routerLink]="['/cart']"
+  matIconButton
+  [matBadge]="cartStore.cartItemsCounter()"
+  [matBadgeHidden]="cartStore.cartItemsCounter() === 0"
+>
+  <mat-icon>shopping_cart</mat-icon>
+</button>
+@if (userStore.user(); as user) {
+  <button matButton [matMenuTriggerFor]="menu" class="p-2">
+    <div class="flex items-center gap-2">
+      <img [src]="user.imageUrl" class="object-cover h-8 w-8 rounded-full" [alt]="user.name" />
+    </div>
+  </button>
+  <mat-menu #menu="matMenu">
+    <div class="flex flex-col px-3 min-w-50">
+      <p class="text-sm font-bold">{{ user.name }}</p>
+      <p class="text-xs text-gray-600">{{ user.email }}</p>
+    </div>
+    <mat-divider />
+    <button mat-menu-item [routerLink]="['/cart']">
+      <mat-icon
+        aria-hidden="false"
+        [matBadge]="cartStore.cartItemsCounter()"
+        [matBadgeHidden]="cartStore.cartItemsCounter() === 0"
+        >shopping_cart</mat-icon
+      >
+      Cart
+    </button>
+    <button mat-menu-item [routerLink]="['/wishlist']">
+      <mat-icon
+        aria-hidden="false"
+        [matBadge]="wishlistStore.whishListCounter()"
+        [matBadgeHidden]="wishlistStore.whishListCounter() === 0"
+        >favorite</mat-icon
+      >
+      Wishlist
+    </button>
+
+    <button mat-menu-item (click)="userStore.logOut()"><mat-icon>logout</mat-icon>Logout</button>
+  </mat-menu>
+} @else {
+  <button matButton [matMenuTriggerFor]="menu" class="p-2 md:hidden!">
+    <div class="flex items-center gap-2">
+      <mat-icon>more_vert</mat-icon>
+    </div>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item [routerLink]="['/cart']">
+      <mat-icon
+        aria-hidden="false"
+        [matBadge]="cartStore.cartItemsCounter()"
+        [matBadgeHidden]="cartStore.cartItemsCounter() === 0"
+        >shopping_cart</mat-icon
+      >
+      Cart
+    </button>
+    <button mat-menu-item [routerLink]="['/wishlist']">
+      <mat-icon
+        aria-hidden="false"
+        [matBadge]="wishlistStore.whishListCounter()"
+        [matBadgeHidden]="wishlistStore.whishListCounter() === 0"
+        >favorite</mat-icon
+      >
+      Wishlist
+    </button>
+
+    <button mat-menu-item (click)="userStore.openSigninDialog()">sign in</button>
+    <button mat-menu-item (click)="userStore.openSignupDialog()">sign up</button>
+  </mat-menu>
+  <button
+    matButton="filled"
+    (click)="userStore.openSigninDialog()"
+    class=""
+    class="hidden! md:block!"
+  >
+    sign in
+  </button>
+  <button matButton="outlined" (click)="userStore.openSignupDialog()" class="hidden! md:block!">
+    sign up
+  </button>
+}

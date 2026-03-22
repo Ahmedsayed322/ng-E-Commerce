@@ -1,0 +1,26 @@
+<div class="grid grid-cols-2  rounded-sm gap-4 md:gap-8 md:p-6">
+  <div class="col-span-2 md:col-span-1">
+    <div class="flex flex-col items-center gap-2 py-8">
+      <p class="text-4xl font-bold">{{ ratingObj().rate }}</p>
+      <app-rating [rating]="ratingObj().rate"></app-rating>
+      <p class="text-sm text-gray-600">Based On {{ ratingObj().count }} Review</p>
+    </div>
+  </div>
+  <div class="col-span-2 md:col-span-1 flex flex-col">
+    <div class="flex-1 flex flex-col justify-center">
+      @for (rBD of ratingBreakDown(); track rBD.star) {
+        <div class="flex flex-1 gap-2">
+          <div class="flex flex-1 items-center gap-2">
+            <p class="w-4">{{ rBD.star }}★</p>
+            <div class="rounded-full h-1/4 bg-gray-300 flex-1 w-full transition-all duration-300">
+              <div class="h-full bg-amber-400 rounded-full" [style.width.%]="rBD.percentage"></div>
+            </div>
+            <p class="justify-self-end">{{ rBD.count }}</p>
+          </div>
+          <div></div>
+          <p></p>
+        </div>
+      }
+    </div>
+  </div>
+</div>

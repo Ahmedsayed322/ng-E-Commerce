@@ -1,0 +1,9 @@
+<div class="flex items-center">
+  <button matIconButton [disabled]="quantity() === 1" (click)="quantityChange.emit(quantity() - 1)">
+    <mat-icon>remove</mat-icon>
+  </button>
+  <p class="text-lg">{{ quantity() }}</p>
+  <button matIconButton (click)="quantityChange.emit(quantity() + 1)">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>

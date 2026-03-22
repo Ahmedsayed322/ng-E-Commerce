@@ -1,0 +1,30 @@
+<div class="grid grid-cols-10 py-4">
+  <div class="col-span-5 flex items-center gap-4">
+    <img
+      [src]="product().image"
+      class="w-20 h-20 rounded-lg object-contain"
+      alt=""
+      [style.view-transition-name]="'product-img-' + product().id"
+    />
+    <div class="flex flex-col justify-center">
+      <p class="text-sm md:text-lg text-gray-900 max-w-3xs font-semibold">{{ product().title }}</p>
+      <p class="text-lg text-gray-600">{{ product().price | currency }}</p>
+    </div>
+  </div>
+  <app-quantity-update
+    class="col-span-3 flex justify-center"
+    [quantity]="quantity()"
+    (quantityChange)="store.changeQuantity({ product: product(), quantity: $event })"
+  />
+  <div class="flex flex-col items-end gap-2 col-span-2">
+    <p class="text-lg font-bold">{{ total() | currency }}</p>
+    <div class="flex -me-3">
+      <button matIconButton (click)="store.moveToWishlist(product())">
+        <mat-icon class="text-gray-900!">favorite_outline</mat-icon>
+      </button>
+      <button matIconButton class="danger" (click)="store.removeFromCart(product().id)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>

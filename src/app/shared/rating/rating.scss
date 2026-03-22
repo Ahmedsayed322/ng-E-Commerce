@@ -1,0 +1,20 @@
+.star-icon {
+  font-size: 20px !important;
+  width: 20px !important;
+  height: 20px !important;
+  line-height: 20px !important;
+  transition: transform 0.15s ease;
+
+  &.filled,
+  &.half {
+    color: #facc15 !important; // yellow-400 أكتر وضوحاً من 300
+  }
+
+  &.empty {
+    color: #d1d5db !important; // gray-300
+  }
+
+  &:hover {
+    transform: scale(1.15);
+  }
+}

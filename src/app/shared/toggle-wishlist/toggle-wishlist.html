@@ -1,0 +1,26 @@
+@if (type() === 'product-list') {
+  <button
+    (click)="toggleWishlist()"
+    class="w-10 h-10 opacity-0 group-hover:opacity-100 duration-150 cursor-pointer rounded-full bg-transparent hover:scale-115 m-auto"
+    [class]="{ 'text-red-500': isInWhishList(), 'opacity-100': isInWhishList() }"
+  >
+    <mat-icon>{{ isInWhishList() ? 'favorite' : 'favorite_border' }}</mat-icon>
+  </button>
+} @else if (type() === 'wishlist') {
+  <button
+    (click)="store.removeFromWishList(product().id)"
+    class="w-10 h-10 opacity-0 group-hover:opacity-100 duration-150 cursor-pointer rounded-full bg-transparent hover:scale-115 m-auto"
+  >
+    <mat-icon>delete</mat-icon>
+  </button>
+} @else if (type() === 'product-details') {
+  <button
+    matIconButton
+    (click)="toggleWishlist()"
+    class="w-10 h-10 duration-150 cursor-pointer rounded-full bg-transparent hover:scale-115 m-auto"
+  >
+    <mat-icon class="text-gray-500!" [class]="{ 'text-red-500!': isInWhishList() }">{{
+      isInWhishList() ? 'favorite' : 'favorite_border'
+    }}</mat-icon>
+  </button>
+}

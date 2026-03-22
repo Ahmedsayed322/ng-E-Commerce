@@ -1,0 +1,27 @@
+<mat-sidenav-container class="min-h-screen">
+  <mat-sidenav
+    mode="side"
+    [opened]="store.openSideNav()"
+    class="flex flex-col gap-4 shadow-lg border-r border-gray-100"
+  >
+    <div class="p-6 flex flex-col gap-4">
+      <h2 class="text-lg text-gray-900">Category</h2>
+      <mat-nav-list class=" flex! flex-col! gap-2!">
+        @for (cat of store.categories(); track cat) {
+          <mat-list-item
+            [class.active-category]="cat === store.category()"
+            [routerLink]="['/products', cat]"
+            [queryParams]="{ search: store.search() ? store.search() : undefined }"
+          >
+            <span matListItemTitle [class.text-white]="cat === store.category()">
+              {{ cat | titlecase }}
+            </span>
+          </mat-list-item>
+        }
+      </mat-nav-list>
+    </div>
+  </mat-sidenav>
+  <mat-sidenav-content class="h-full p-5 bg-gray-50">
+    <ng-content />
+  </mat-sidenav-content>
+</mat-sidenav-container>

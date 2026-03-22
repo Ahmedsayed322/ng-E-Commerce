@@ -1,0 +1,59 @@
+@if (product(); as product) {
+  <div class="flex flex-col gap-3 md:items-start">
+    <div class="text-xs rounded-xl bg-gray-100 px-2 py-1 w-fit">
+      {{ product.category | titlecase }}
+    </div>
+    <h2 class="text-2xl font-extrabold">{{ product.title | titlecase }}</h2>
+    <app-rating [rating]="product.rating.rate">
+      <div class="flex  text-gray-600 items-center gap-1">
+        <p>{{ product.rating.rate }}</p>
+        <p>({{ product.rating.count }} reviews)</p>
+      </div>
+    </app-rating>
+    <h3 class="text-3xl font-extrabold">{{ product.price | currency }}</h3>
+    <p class="font-bold">Description</p>
+    <p class="text-sm -mt-1 max-w-xl">{{ product.description }}</p>
+    <div class="flex flex-col border-y border-gray-200 w-full gap-2">
+      <div class="flex items-center gap-2">
+        <p class="font-semibold">Quantity</p>
+        <app-quantity-update
+          [quantity]="quantity()"
+          (quantityChange)="quantity.set($event)"
+        ></app-quantity-update>
+      </div>
+      <div class="flex items-center pb-4">
+        <button
+          matButton="filled"
+          class="w-full! max-w-100"
+          (click)="cartStore.addToCart({ product, quantity: quantity() })"
+        >
+          <mat-icon>shopping_cart</mat-icon>
+          Add to Cart
+        </button>
+        <div class="flex px-2 gap-2">
+          <app-toggle-wishlist [product]="product" type="product-details" />
+          <button
+            matIconButton
+            class="w-10 h-10 duration-150 cursor-pointer rounded-full bg-transparent hover:scale-115 m-auto"
+          >
+            <mat-icon>share</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="flex flex-col gap-2 pt-3 text-gray-700 text-xs">
+      <div class="flex items-center gap-3">
+        <mat-icon class="small">local_shipping</mat-icon>
+        <p>Free shipping on orders over $50</p>
+      </div>
+      <div class="flex items-center gap-3">
+        <mat-icon class="small">autorenew</mat-icon>
+        <p>30-day return policy</p>
+      </div>
+      <div class="flex items-center gap-3">
+        <mat-icon class="small">shield</mat-icon>
+        <p>2-year warranty included</p>
+      </div>
+    </div>
+  </div>
+}

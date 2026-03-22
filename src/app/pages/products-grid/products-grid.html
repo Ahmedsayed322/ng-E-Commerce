@@ -1,0 +1,19 @@
+@if (store.productsIsLoading()) {
+  <app-spinner />
+} @else {
+ 
+    <p class="text-2xl">{{ category() | titlecase }}</p>
+    <p class="text-sm text-gray-600 mb-5">{{ store.filteredProducts()?.length }} Product found!</p>
+    <div class="grid grid-cols-[repeat(auto-fill,minmax(270px,1fr))] gap-4">
+      @for (product of store.filteredProducts(); track product.id) {
+        <app-product-card [product]="product">
+          <app-toggle-wishlist
+            class="absolute right-2 top-2"
+            [product]="product"
+            [style.view-transition-name]="'wishlist-img-' + product.id"
+          />
+        </app-product-card>
+      }
+    </div>
+
+}

@@ -1,0 +1,14 @@
+<div class="flex items-center gap-3">
+  <div class="flex items-center">
+    @for (star of stars; track $index) {
+      @if (rating() >= star - 0.3) {
+        <mat-icon class="star-icon filled">star</mat-icon>
+      } @else if (rating()>= star - 0.5) {
+        <mat-icon class="star-icon half">star_half</mat-icon>
+      } @else {
+        <mat-icon class="star-icon empty">star</mat-icon>
+      }
+    }
+  </div>
+  <ng-content />
+</div>

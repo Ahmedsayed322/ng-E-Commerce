@@ -1,0 +1,33 @@
+<div appPanel>
+  <h2 class="text-xl mb-6 font-semibold">Write a Review</h2>
+  <form class="grid grid-cols-2 gap-4" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <mat-label>Review Title</mat-label>
+      <input matInput placeholder="Summarize your review" formControlName="title" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select formControlName="rating">
+        @for (star of stars; track $index) {
+          <mat-option [value]="star.stars">{{ star.label }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="col-span-2">
+      <mat-label>Review Title</mat-label>
+      <textarea
+        formControlName="comment"
+        matInput
+        class="min-h-20"
+        placeholder="tell other about your experience about this product"
+      ></textarea>
+    </mat-form-field>
+    <div class="flex gap-4">
+      <button type="submit" matButton="filled" [disabled]="reviewStore.addReviewLoading()">
+        Submit Review
+      </button>
+      <button type="button" matButton="outlined" (click)="reviewStore.toggleWriteReview()">
+        cancel
+      </button>
+    </div>
+  </form>
+</div>

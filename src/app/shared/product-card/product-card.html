@@ -1,0 +1,40 @@
+<div
+  [style.view-transition-name]="'product-card-' + product().id"
+  class="group relative flex flex-col items-center gap-4 shadow-lg rounded-lg overflow-hidden h-full bg-white pt-2 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+>
+  <ng-content select="app-toggle-wishlist" />
+
+  <img
+    [src]="product().image"
+    draggable="false"
+    [alt]="product().title"
+    class="w-[calc(100%-70px)] h-40 object-contain cursor-pointer"
+    [routerLink]="['/product', `${product().id}`]"
+    [style.view-transition-name]="'product-img-' + product().id"
+  />
+  <div class="flex flex-col gap-2 p-5 flex-1">
+    <h3
+      class="text-lg font-semibold text-gray-900 cursor-pointer"
+      [routerLink]="['/product', `${product().id}`]"
+    >
+      {{ product().title }}
+    </h3>
+    <app-rating [rating]="product().rating.rate">
+      <p class="text-xs text-gray-600">({{ product().rating.count }})</p>
+    </app-rating>
+
+    <p class="text-sm leading-relaxed text-gray-600 flex-1">
+      {{ product().description | description: 100 }}
+    </p>
+    <!-- product-rating -->
+    <!-- <p class="text-sm font-medium">{{ product().inStock ? 'In Stock' : 'Out of Stock' }}</p> -->
+    <div class="flex flex-col lg:flex-row justify-between gap-2">
+      <span class="text-2xl text-gray-900 font-bold">{{ product().price | currency }}</span>
+
+      <button matButton="filled" (click)="addToCart()">
+        <mat-icon>shopping_cart</mat-icon>
+        add to cart
+      </button>
+    </div>
+  </div>
+</div>

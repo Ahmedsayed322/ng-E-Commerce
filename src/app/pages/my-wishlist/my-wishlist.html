@@ -1,0 +1,23 @@
+<div class="mx-auto max-w-300 w-full flex flex-col gap-6">
+  <app-back-button navigateTo="/products"><p>Continue Shopping</p></app-back-button>
+  @if (store.whishListCounter() > 0) {
+    <div class="flex items-center justify-between px-2">
+      <p class="text-3xl font-bold">My Wishlist</p>
+      <p class="text-xl text-gray-600">{{ store.whishListCounter() }} items</p>
+    </div>
+    <div class="grid grid-cols-[repeat(auto-fill,minmax(270px,1fr))] gap-4">
+      @for (product of store.wishlist(); track product.id) {
+        <app-product-card [product]="product">
+          <app-toggle-wishlist [product]="product" type="wishlist" class="absolute right-2 top-2" />
+        </app-product-card>
+      }
+    </div>
+    <div class="flex items-center justify-center">
+      <button matButton="outlined" class="danger" (click)="store.clearWishlist()">
+        clear wishlist
+      </button>
+    </div>
+  } @else {
+    <app-empty-wishlist />
+  }
+</div>
